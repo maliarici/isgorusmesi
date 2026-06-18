@@ -4,135 +4,223 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>İş Görüşmesi</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
       padding: 24px;
-      background: linear-gradient(135deg, #eef2ff, #f8fafc);
-      font-family: Arial, Helvetica, sans-serif;
-      color: #1f2937;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(120, 89, 54, 0.035) 0,
+          rgba(120, 89, 54, 0.035) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        #d8c7a7;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #3d2f23;
     }
 
     .container {
       width: 100%;
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
-      background: #ffffff;
-      padding: 34px;
-      border-radius: 22px;
-      box-shadow: 0 18px 50px rgba(30, 41, 59, 0.13);
+      padding: 38px;
+      background:
+        linear-gradient(rgba(255, 250, 235, 0.94), rgba(244, 233, 205, 0.96));
+      border: 1px solid #8d7657;
+      border-radius: 4px;
+      box-shadow:
+        0 18px 40px rgba(69, 49, 28, 0.22),
+        inset 0 0 0 6px rgba(121, 92, 57, 0.08);
     }
 
     h1 {
-      margin: 0 0 24px;
+      margin: 0 0 14px;
       text-align: center;
-      color: #3730a3;
-      font-size: 34px;
+      font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
+      font-size: clamp(40px, 6vw, 60px);
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: #3e2d1f;
+      text-shadow: 1px 1px 0 rgba(255, 248, 231, 0.8);
+      border-bottom: 3px double #5f4a35;
+      padding-bottom: 12px;
     }
 
     .instructions {
-      margin-bottom: 24px;
-      padding: 14px 18px;
-      border-radius: 14px;
-      background: #eef2ff;
-      color: #312e81;
-      line-height: 1.5;
-      font-size: 16px;
+      margin: 0 auto 28px;
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      font-style: italic;
+      color: #5a4632;
     }
 
     .word-bank-title {
       margin: 0 0 10px;
-      color: #374151;
-      font-size: 18px;
+      font-size: 17px;
+      color: #3f3022;
+      font-family: "Times New Roman", Georgia, serif;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     .word-bank {
-      min-height: 88px;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(118px, 1fr));
       gap: 10px;
-      align-items: flex-start;
-      margin-bottom: 28px;
+      min-height: 106px;
+      margin-bottom: 30px;
       padding: 16px;
-      border: 2px dashed #a5b4fc;
-      border-radius: 14px;
-      background: #f8faff;
+      border: 1px solid #8d7657;
+      border-radius: 2px;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(105, 79, 47, 0.03) 0,
+          rgba(105, 79, 47, 0.03) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
+        #efe2c5;
+    }
+
+    .word-slot {
+      min-width: 0;
+      height: 38px;
     }
 
     .word {
-      padding: 9px 14px;
-      border: 1px solid #818cf8;
-      border-radius: 999px;
-      background: #ffffff;
-      color: #3730a3;
+      display: flex;
+      width: 100%;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border: 1px solid #6f573d;
+      border-radius: 2px;
+      background: #f7edd6;
+      color: #3f3022;
+      font-size: 15px;
       font-weight: 700;
       cursor: grab;
       user-select: none;
-      box-shadow: 0 3px 8px rgba(79, 70, 229, 0.12);
-      transition: transform 0.15s, background 0.15s;
+      box-shadow: 1px 2px 0 rgba(82, 61, 39, 0.22);
+      transition: background 0.15s, transform 0.15s, opacity 0.15s;
     }
 
     .word:hover {
-      transform: translateY(-2px);
-      background: #eef2ff;
+      background: #e6d3ae;
+      transform: translateY(-1px);
     }
 
-    .word:active { cursor: grabbing; }
+    .word:active {
+      cursor: grabbing;
+    }
 
     .word.selected {
-      outline: 3px solid #f59e0b;
-      background: #fef3c7;
-      color: #92400e;
+      outline: 2px solid #7a5b38;
+      background: #dbc49a;
+      color: #2f241a;
+    }
+
+    .word.used {
+      visibility: hidden;
+      pointer-events: none;
     }
 
     .story {
       font-size: 18px;
       line-height: 2.35;
       text-align: justify;
+      padding: 22px 20px;
+      border-top: 1px solid #8d7657;
+      border-bottom: 1px solid #8d7657;
+      background: rgba(255, 250, 235, 0.45);
+    }
+
+    .hero-image-wrap {
+      margin: 0 0 24px;
+      text-align: center;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 430px;
+      display: block;
+      margin: 0 auto;
+      border: 8px solid #f4e9cd;
+      outline: 1px solid #8d7657;
+      box-shadow: 0 10px 24px rgba(69, 49, 28, 0.18);
+    }
+
+    .hero-caption {
+      margin-top: 10px;
+      font-size: 14px;
+      font-style: italic;
+      color: #5b4630;
     }
 
     .drop-zone {
       display: inline-flex;
       width: 145px;
-      min-height: 34px;
+      min-width: 145px;
+      height: 36px;
       margin: 0 4px;
-      padding: 3px 7px;
+      padding: 3px 8px;
       align-items: center;
       justify-content: center;
       vertical-align: middle;
-      border: 2px dashed #6366f1;
-      border-radius: 8px;
-      background: #f8faff;
-      color: #312e81;
-      font-size: 16px;
+      border: 1px dashed #70583f;
+      border-radius: 2px;
+      background: #f7edd6;
+      color: #3f3022;
+      font-size: 15px;
       font-weight: 700;
+      white-space: nowrap;
       cursor: pointer;
-      transition: 0.2s;
+      transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
 
     .drop-zone.drag-over {
-      background: #e0e7ff;
-      transform: scale(1.03);
+      border-color: #4d3926;
+      background: #e4d1a8;
+      box-shadow: 0 0 0 2px rgba(77, 57, 38, 0.16);
     }
 
     .drop-zone.filled {
       border-style: solid;
-      background: #eef2ff;
+      background: #e6d3ae;
+      cursor: grab;
+    }
+
+    .drop-zone.filled:active {
+      cursor: grabbing;
+    }
+
+    .drop-zone.selected {
+      outline: 2px solid #7a5b38;
+      background: #dbc49a;
+      color: #2f241a;
     }
 
     .drop-zone.correct {
-      border-color: #10b981;
-      background: #d1fae5;
-      color: #065f46;
+      border-color: #49633f;
+      background: #dce3c8;
+      color: #2f4a2b;
     }
 
     .drop-zone.incorrect {
-      border-color: #ef4444;
-      background: #fee2e2;
-      color: #991b1b;
+      border-color: #8b3a2e;
+      background: #ead0c3;
+      color: #6f271f;
     }
 
     .actions {
@@ -140,69 +228,118 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      margin-top: 28px;
+      margin-top: 30px;
     }
 
     button {
       border: 0;
       border-radius: 999px;
-      padding: 12px 22px;
+      padding: 12px 23px;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
     }
 
     .check-button {
-      background: #4f46e5;
-      color: white;
-      box-shadow: 0 7px 16px rgba(79, 70, 229, 0.25);
+      background: #4a3827;
+      color: #f7edd6;
+      border: 1px solid #2f241a;
+      border-radius: 2px;
+      box-shadow: 2px 3px 0 rgba(54, 39, 24, 0.25);
     }
 
-    .check-button:hover { background: #4338ca; }
+    .check-button:hover {
+      background: #2f241a;
+    }
 
     .reset-button {
-      background: #e5e7eb;
-      color: #374151;
+      background: #d8c39b;
+      color: #3f3022;
+      border: 1px solid #70583f;
+      border-radius: 2px;
     }
 
-    .reset-button:hover { background: #d1d5db; }
+    .reset-button:hover {
+      background: #c9af7d;
+    }
 
     #result {
       min-height: 30px;
       margin: 20px 0 0;
       text-align: center;
-      font-size: 18px;
+      font-size: 21px;
       font-weight: 700;
     }
 
-    .success { color: #059669; }
-    .partial { color: #b45309; }
+    .success {
+      color: #49633f;
+    }
 
-    @media (max-width: 650px) {
-      body { padding: 10px; }
-      .container { padding: 22px 16px; }
-      h1 { font-size: 28px; }
+    .partial {
+      color: #7a4e22;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        padding: 24px 16px;
+      }
+
+      .word-bank {
+        grid-template-columns: repeat(3, minmax(90px, 1fr));
+        min-height: 154px;
+      }
+
       .story {
         font-size: 16px;
-        line-height: 2.5;
+        line-height: 2.55;
         text-align: left;
       }
+
       .drop-zone {
-        width: 125px;
+        width: 126px;
+        min-width: 126px;
         font-size: 14px;
       }
-      .word { font-size: 14px; }
+
+      .instructions {
+        font-size: 16px;
+      }
+
+      .hero-image {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .word-bank {
+        grid-template-columns: repeat(2, minmax(105px, 1fr));
+        min-height: 250px;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="container">
     <h1>İş Görüşmesi</h1>
 
-    <section class="instructions">
+    <p class="instructions">
       Doğru kelimeyi seçelim ve boşluğa taşıyalım.
-    </section>
+    </p>
+
+    <div class="hero-image-wrap">
+      <img src="is_gorusmesi_gorsel.png" alt="İş görüşmesine giden genç bir adam" class="hero-image">
+      <div class="hero-caption">Metne uygun görsel</div>
+    </div>
 
     <h2 class="word-bank-title">Kelimeler</h2>
     <section id="wordBank" class="word-bank" aria-label="Kelime havuzu"></section>
@@ -232,8 +369,12 @@
     </section>
 
     <div class="actions">
-      <button class="check-button" onclick="checkAnswers()">Cevapları Kontrol Et</button>
-      <button class="reset-button" onclick="resetActivity()">Temizle ve Tekrar Dene</button>
+      <button class="check-button" type="button" onclick="checkAnswers()">
+        Cevapları Kontrol Et
+      </button>
+      <button class="reset-button" type="button" onclick="resetActivity()">
+        Temizle ve Tekrar Dene
+      </button>
     </div>
 
     <p id="result" aria-live="polite"></p>
@@ -241,19 +382,140 @@
 
   <script>
     const words = [
-      "başladım", "dedi", "döktü", "girdim", "giydim",
-      "kalabalıktı", "söylemedim", "vardı", "verdim"
+      "başladım",
+      "dedi",
+      "döktü",
+      "girdim",
+      "giydim",
+      "kalabalıktı",
+      "söylemedim",
+      "vardı",
+      "verdim"
     ];
 
     const wordBank = document.getElementById("wordBank");
-    const zones = document.querySelectorAll(".drop-zone");
-    let selectedWord = null;
+    const zones = [...document.querySelectorAll(".drop-zone")];
+
+    let selectedItem = null;
+    let draggedItem = null;
 
     function shuffle(array) {
-      return [...array].sort(() => Math.random() - 0.5);
+      const copy = [...array];
+
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+
+      return copy;
+    }
+
+    function clearSelection() {
+      selectedItem = null;
+
+      document.querySelectorAll(".word, .drop-zone").forEach(item => {
+        item.classList.remove("selected");
+      });
+    }
+
+    function getBankWord(word) {
+      return document.querySelector(`.word[data-word="${word}"]`);
+    }
+
+    function setBankWordUsed(word, used) {
+      const bankWord = getBankWord(word);
+
+      if (bankWord) {
+        bankWord.classList.toggle("used", used);
+        bankWord.classList.remove("selected");
+      }
+    }
+
+    function clearZone(zone) {
+      const oldWord = zone.dataset.value;
+
+      if (oldWord) {
+        setBankWordUsed(oldWord, false);
+      }
+
+      zone.textContent = "";
+      zone.dataset.value = "";
+      zone.draggable = false;
+      zone.classList.remove(
+        "filled",
+        "correct",
+        "incorrect",
+        "selected",
+        "drag-over"
+      );
+    }
+
+    function setZoneWord(zone, word) {
+      zone.textContent = word;
+      zone.dataset.value = word;
+      zone.draggable = true;
+      zone.classList.add("filled");
+      zone.classList.remove("correct", "incorrect", "selected", "drag-over");
+      setBankWordUsed(word, true);
+    }
+
+    function moveOrSwap(source, target) {
+      if (!source || !target || source === target) {
+        clearSelection();
+        return;
+      }
+
+      const sourceType = source.type;
+      const sourceWord = source.word;
+      const sourceZone = source.zone || null;
+      const targetWord = target.dataset.value || "";
+
+      if (sourceType === "bank") {
+        if (targetWord) {
+          setBankWordUsed(targetWord, false);
+        }
+
+        setZoneWord(target, sourceWord);
+      }
+
+      if (sourceType === "zone" && sourceZone) {
+        if (targetWord) {
+          sourceZone.textContent = targetWord;
+          sourceZone.dataset.value = targetWord;
+          sourceZone.draggable = true;
+          sourceZone.classList.add("filled");
+          sourceZone.classList.remove("correct", "incorrect", "selected");
+        } else {
+          sourceZone.textContent = "";
+          sourceZone.dataset.value = "";
+          sourceZone.draggable = false;
+          sourceZone.classList.remove(
+            "filled",
+            "correct",
+            "incorrect",
+            "selected"
+          );
+        }
+
+        setZoneWord(target, sourceWord);
+      }
+
+      clearSelection();
+      document.getElementById("result").textContent = "";
+    }
+
+    function returnZoneWordToBank(zone) {
+      if (!zone.dataset.value) return;
+
+      clearZone(zone);
+      clearSelection();
+      document.getElementById("result").textContent = "";
     }
 
     function createWord(word) {
+      const slot = document.createElement("div");
+      slot.className = "word-slot";
+
       const item = document.createElement("span");
       item.className = "word";
       item.textContent = word;
@@ -261,64 +523,74 @@
       item.dataset.word = word;
 
       item.addEventListener("dragstart", event => {
+        draggedItem = {
+          type: "bank",
+          word: word,
+          zone: null
+        };
+
         event.dataTransfer.setData("text/plain", word);
         event.dataTransfer.effectAllowed = "move";
       });
 
+      item.addEventListener("dragend", () => {
+        draggedItem = null;
+      });
+
       item.addEventListener("click", () => {
-        document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
-        selectedWord = word;
+        clearSelection();
+
+        selectedItem = {
+          type: "bank",
+          word: word,
+          zone: null
+        };
+
         item.classList.add("selected");
       });
 
-      return item;
+      slot.appendChild(item);
+      return slot;
     }
 
     function fillWordBank() {
       wordBank.innerHTML = "";
-      shuffle(words).forEach(word => wordBank.appendChild(createWord(word)));
-    }
 
-    function findWordElement(word) {
-      return [...document.querySelectorAll(".word")]
-        .find(item => item.dataset.word === word);
-    }
-
-    function returnCurrentWord(zone) {
-      const currentWord = zone.dataset.value;
-      if (!currentWord) return;
-
-      if (!findWordElement(currentWord)) {
-        wordBank.appendChild(createWord(currentWord));
-      }
-
-      zone.textContent = "";
-      zone.dataset.value = "";
-      zone.classList.remove("filled", "correct", "incorrect");
-    }
-
-    function placeWord(zone, word) {
-      if (!word) return;
-
-      returnCurrentWord(zone);
-
-      const wordElement = findWordElement(word);
-      if (wordElement) wordElement.remove();
-
-      zone.textContent = word;
-      zone.dataset.value = word;
-      zone.classList.add("filled");
-      zone.classList.remove("correct", "incorrect");
-
-      selectedWord = null;
-      document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
-      document.getElementById("result").textContent = "";
+      shuffle(words).forEach(word => {
+        wordBank.appendChild(createWord(word));
+      });
     }
 
     zones.forEach(zone => {
+      zone.draggable = false;
+
+      zone.addEventListener("dragstart", event => {
+        const word = zone.dataset.value;
+
+        if (!word) {
+          event.preventDefault();
+          return;
+        }
+
+        draggedItem = {
+          type: "zone",
+          word: word,
+          zone: zone
+        };
+
+        event.dataTransfer.setData("text/plain", word);
+        event.dataTransfer.effectAllowed = "move";
+      });
+
+      zone.addEventListener("dragend", () => {
+        draggedItem = null;
+        zone.classList.remove("drag-over");
+      });
+
       zone.addEventListener("dragover", event => {
         event.preventDefault();
         zone.classList.add("drag-over");
+        event.dataTransfer.dropEffect = "move";
       });
 
       zone.addEventListener("dragleave", () => {
@@ -328,41 +600,63 @@
       zone.addEventListener("drop", event => {
         event.preventDefault();
         zone.classList.remove("drag-over");
-        placeWord(zone, event.dataTransfer.getData("text/plain"));
+
+        if (draggedItem) {
+          moveOrSwap(draggedItem, zone);
+        }
       });
 
       zone.addEventListener("click", () => {
-        if (selectedWord) placeWord(zone, selectedWord);
+        if (selectedItem) {
+          moveOrSwap(selectedItem, zone);
+          return;
+        }
+
+        const word = zone.dataset.value;
+
+        if (word) {
+          clearSelection();
+
+          selectedItem = {
+            type: "zone",
+            word: word,
+            zone: zone
+          };
+
+          zone.classList.add("selected");
+        }
       });
 
       zone.addEventListener("dblclick", () => {
-        returnCurrentWord(zone);
-        document.getElementById("result").textContent = "";
+        returnZoneWordToBank(zone);
       });
 
       zone.addEventListener("keydown", event => {
-        if ((event.key === "Enter" || event.key === " ") && selectedWord) {
+        if ((event.key === "Enter" || event.key === " ") && selectedItem) {
           event.preventDefault();
-          placeWord(zone, selectedWord);
+          moveOrSwap(selectedItem, zone);
         }
 
         if (event.key === "Backspace" || event.key === "Delete") {
-          returnCurrentWord(zone);
+          event.preventDefault();
+          returnZoneWordToBank(zone);
         }
       });
     });
 
     wordBank.addEventListener("dragover", event => {
       event.preventDefault();
+      event.dataTransfer.dropEffect = "move";
     });
 
     wordBank.addEventListener("drop", event => {
       event.preventDefault();
-      const word = event.dataTransfer.getData("text/plain");
 
-      zones.forEach(zone => {
-        if (zone.dataset.value === word) returnCurrentWord(zone);
-      });
+      if (draggedItem && draggedItem.type === "zone" && draggedItem.zone) {
+        returnZoneWordToBank(draggedItem.zone);
+      }
+
+      draggedItem = null;
     });
 
     function checkAnswers() {
@@ -370,32 +664,42 @@
 
       zones.forEach(zone => {
         const isCorrect = zone.dataset.value === zone.dataset.answer;
+
         zone.classList.toggle("correct", isCorrect);
         zone.classList.toggle("incorrect", !isCorrect);
-        if (isCorrect) correct++;
+
+        if (isCorrect) {
+          correct++;
+        }
       });
 
       const result = document.getElementById("result");
-
-      if (correct === zones.length) {
-        result.textContent = "Tebrikler! Bütün cevaplar doğru!";
-        result.className = "success";
-      } else {
-        result.textContent = `${correct}/${zones.length}`;
-        result.className = "partial";
-      }
+      result.textContent = `${correct}/${zones.length}`;
+      result.className = correct === zones.length ? "success" : "partial";
+      clearSelection();
     }
 
     function resetActivity() {
       zones.forEach(zone => {
         zone.textContent = "";
         zone.dataset.value = "";
-        zone.classList.remove("filled", "correct", "incorrect", "drag-over");
+        zone.draggable = false;
+        zone.classList.remove(
+          "filled",
+          "correct",
+          "incorrect",
+          "selected",
+          "drag-over"
+        );
       });
 
-      selectedWord = null;
-      document.getElementById("result").textContent = "";
-      document.getElementById("result").className = "";
+      selectedItem = null;
+      draggedItem = null;
+
+      const result = document.getElementById("result");
+      result.textContent = "";
+      result.className = "";
+
       fillWordBank();
     }
 
