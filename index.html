@@ -1,113 +1,196 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ali'nin Kahve Macerası - Boşluk Doldurma</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .gap-input {
-            border-bottom: 2px solid #3b82f6;
-            outline: none;
-            padding: 2px 5px;
-            width: 120px;
-            transition: all 0.3s;
-        }
-        .gap-input:focus {
-            background-color: #eff6ff;
-            border-bottom-color: #1d4ed8;
-        }
-        .correct {
-            background-color: #d1fae5;
-            border-bottom-color: #10b981;
-            color: #065f46;
-        }
-        .incorrect {
-            background-color: #fee2e2;
-            border-bottom-color: #ef4444;
-            color: #991b1b;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali'nin Kahve Macerası</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #fffbeb;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2937;
+    }
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: white;
+      padding: 34px;
+      border-radius: 20px;
+      box-shadow: 0 18px 45px rgba(120, 53, 15, .15);
+    }
+    h1 {
+      margin: 0 0 8px;
+      text-align: center;
+      color: #92400e;
+      font-size: 32px;
+    }
+    .level {
+      margin: 0 0 24px;
+      text-align: center;
+      color: #d97706;
+      font-style: italic;
+    }
+    .instruction {
+      padding: 16px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      background: #fef3c7;
+      color: #78350f;
+      line-height: 1.55;
+      font-size: 15px;
+    }
+    .story {
+      margin-bottom: 30px;
+      font-size: 18px;
+      line-height: 2.25;
+      text-align: justify;
+    }
+    .gap-input {
+      width: 125px;
+      padding: 4px 6px;
+      border: 0;
+      border-bottom: 2px solid #3b82f6;
+      outline: none;
+      text-align: center;
+      font-size: 16px;
+      transition: .25s;
+    }
+    .gap-input:focus {
+      background: #eff6ff;
+      border-bottom-color: #1d4ed8;
+    }
+    .gap-input.correct {
+      background: #d1fae5;
+      border-bottom-color: #10b981;
+      color: #065f46;
+    }
+    .gap-input.incorrect {
+      background: #fee2e2;
+      border-bottom-color: #ef4444;
+      color: #991b1b;
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .check {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 28px;
+      background: #d97706;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 7px 16px rgba(217,119,6,.25);
+    }
+    .check:hover { background: #b45309; }
+    .reset {
+      border: 0;
+      background: transparent;
+      color: #b45309;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    #resultMessage { min-height: 24px; margin: 0; font-weight: 700; }
+    .success { color: #059669; }
+    .partial { color: #b45309; }
+    @media (max-width: 600px) {
+      body { padding: 12px; align-items: flex-start; }
+      .card { padding: 22px; }
+      h1 { font-size: 26px; }
+      .story { font-size: 16px; line-height: 2.45; text-align: left; }
+      .gap-input { width: 110px; }
+    }
+  </style>
 </head>
-<body class="bg-amber-50 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-2xl w-full">
-        <h1 class="text-3xl font-bold text-amber-800 mb-2 text-center">☕ Ali'nin Kahve Macerası</h1>
-        <p class="text-amber-600 text-center mb-6 italic">A1.2 - A2.1 Seviyesi Boşluk Doldurma Etkinliği</p>
-        
-        <div class="bg-amber-100 p-4 rounded-lg mb-6 text-sm text-amber-900 leading-relaxed">
-            <strong>Yönerge:</strong> Aşağıdaki metindeki boşlukları parantez içindeki fiilleri uygun zamanlarda (Geniş Zaman, Şimdiki Zaman veya Geçmiş Zaman) kullanarak veya uygun kelimeleri yazarak doldurunuz.
-        </div>
+<body>
+  <main class="card">
+    <h1>☕ Ali'nin Kahve Macerası</h1>
+    <p class="level">A1.2–A2.1 Seviyesi Boşluk Doldurma Etkinliği</p>
 
-        <div id="story" class="text-lg leading-loose text-gray-800 text-justify mb-8">
-            Ali bu sabah saat 07:00'de <input type="text" data-answer="uyandı" class="gap-input text-center" placeholder="(uyanmak)">. 
-            Hava çok güzeldi, bu yüzden pencereyi <input type="text" data-answer="açtı" class="gap-input text-center" placeholder="(açmak)">. 
-            Mutfakta kendine büyük bir kahve <input type="text" data-answer="yapmak" class="gap-input text-center" placeholder="(yapmak)"> istedi. 
-            Cezveye su koydu ve ocağı yaktı. Ama Ali çok <input type="text" data-answer="uykuluydu" class="gap-input text-center" placeholder="(adj: sleepy)">. 
-            Yanlışlıkla şeker kavanozu yerine <input type="text" data-answer="tuz" class="gap-input text-center" placeholder="(noun: salt)"> kavanozunu aldı. 
-            Kahvesine iki kaşık tuz <input type="text" data-answer="attı" class="gap-input text-center" placeholder="(atmak)">. 
-            Sonra kahvesinden büyük bir yudum <input type="text" data-answer="aldı" class="gap-input text-center" placeholder="(almak)">. 
-            Birden Ali'nin gözleri fal taşı gibi açıldı! "Aman Allah'ım! Bu kahve çok <input type="text" data-answer="tuzlu" class="gap-input text-center" placeholder="(adj: salty)">!" diye 
-            <input type="text" data-answer="bağırdı" class="gap-input text-center" placeholder="(bağırmak)">. 
-            Ali o günden sonra kahve yaparken her zaman kavanozları <input type="text" data-answer="kontrol ediyor" class="gap-input text-center" placeholder="(kontrol etmek)">.
-        </div>
+    <section class="instruction">
+      <strong>Yönerge:</strong> Metindeki boşlukları, parantez içindeki sözcükleri
+      uygun biçimde kullanarak doldurunuz.
+    </section>
 
-        <div class="flex flex-col items-center gap-4">
-            <button onclick="checkAnswers()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-md">
-                Cevapları Kontrol Et
-            </button>
-            <p id="resultMessage" class="text-lg font-medium"></p>
-            <button onclick="resetQuiz()" class="text-amber-700 hover:underline text-sm">Temizle ve Tekrar Dene</button>
-        </div>
-    </div>
+    <section class="story">
+      Ali bu sabah saat 07.00'de
+      <input type="text" data-answer="uyandı" class="gap-input" placeholder="uyanmak" aria-label="uyanmak">.
+      Hava çok güzeldi, bu yüzden pencereyi
+      <input type="text" data-answer="açtı" class="gap-input" placeholder="açmak" aria-label="açmak">.
+      Mutfakta kendine büyük bir kahve
+      <input type="text" data-answer="yapmak" class="gap-input" placeholder="yapmak" aria-label="yapmak">
+      istedi. Cezveye su koydu ve ocağı yaktı. Ama Ali çok
+      <input type="text" data-answer="uykuluydu" class="gap-input" placeholder="uykulu" aria-label="uykulu">.
+      Yanlışlıkla şeker kavanozu yerine
+      <input type="text" data-answer="tuz" class="gap-input" placeholder="tuz" aria-label="tuz">
+      kavanozunu aldı. Kahvesine iki kaşık tuz
+      <input type="text" data-answer="attı" class="gap-input" placeholder="atmak" aria-label="atmak">.
+      Sonra kahvesinden büyük bir yudum
+      <input type="text" data-answer="aldı" class="gap-input" placeholder="almak" aria-label="almak">.
+      Birden Ali'nin gözleri fal taşı gibi açıldı! “Aman Allah'ım! Bu kahve çok
+      <input type="text" data-answer="tuzlu" class="gap-input" placeholder="tuzlu" aria-label="tuzlu">!”
+      diye
+      <input type="text" data-answer="bağırdı" class="gap-input" placeholder="bağırmak" aria-label="bağırmak">.
+      Ali o günden sonra kahve yaparken her zaman kavanozları
+      <input type="text" data-answer="kontrol ediyor" class="gap-input" placeholder="kontrol etmek" aria-label="kontrol etmek">.
+    </section>
 
-    <script>
-        function checkAnswers() {
-            const inputs = document.querySelectorAll('.gap-input');
-            let correctCount = 0;
-            const total = inputs.length;
+    <section class="actions">
+      <button class="check" onclick="checkAnswers()">Cevapları Kontrol Et</button>
+      <p id="resultMessage" aria-live="polite"></p>
+      <button class="reset" onclick="resetQuiz()">Temizle ve Tekrar Dene</button>
+    </section>
+  </main>
 
-            inputs.forEach(input => {
-                const userAnswer = input.value.trim().toLowerCase();
-                const correctAnswer = input.getAttribute('data-answer').toLowerCase();
+  <script>
+    function normalizeText(text) {
+      return text.trim().toLocaleLowerCase('tr-TR').replace(/\s+/g, ' ');
+    }
 
-                if (userAnswer === correctAnswer) {
-                    input.classList.remove('incorrect');
-                    input.classList.add('correct');
-                    correctCount++;
-                } else {
-                    input.classList.remove('correct');
-                    input.classList.add('incorrect');
-                }
-            });
+    function checkAnswers() {
+      const inputs = document.querySelectorAll('.gap-input');
+      let correctCount = 0;
 
-            const resultMessage = document.getElementById('resultMessage');
-            if (correctCount === total) {
-                resultMessage.innerText = "Tebrikler! Harika iş çıkardın! 🎉";
-                resultMessage.className = "text-green-600 font-bold";
-            } else {
-                resultMessage.innerText = `${total} boşluktan ${correctCount} tanesini doğru bildin. Hadi tekrar dene! 💪`;
-                resultMessage.className = "text-amber-700";
-            }
-        }
+      inputs.forEach(input => {
+        const isCorrect =
+          normalizeText(input.value) === normalizeText(input.dataset.answer);
 
-        function resetQuiz() {
-            const inputs = document.querySelectorAll('.gap-input');
-            inputs.forEach(input => {
-                input.value = "";
-                input.classList.remove('correct', 'incorrect');
-            });
-            document.getElementById('resultMessage').innerText = "";
-        }
-    </script>
+        input.classList.toggle('correct', isCorrect);
+        input.classList.toggle('incorrect', !isCorrect);
+        if (isCorrect) correctCount++;
+      });
+
+      const result = document.getElementById('resultMessage');
+      if (correctCount === inputs.length) {
+        result.textContent = 'Tebrikler! Bütün cevaplar doğru! 🎉';
+        result.className = 'success';
+      } else {
+        result.textContent =
+          `${inputs.length} boşluktan ${correctCount} tanesi doğru. Tekrar dene! 💪`;
+        result.className = 'partial';
+      }
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll('.gap-input').forEach(input => {
+        input.value = '';
+        input.classList.remove('correct', 'incorrect');
+      });
+      const result = document.getElementById('resultMessage');
+      result.textContent = '';
+      result.className = '';
+    }
+  </script>
 </body>
 </html>
-```eof
-
-Hazırladığım bu küçük uygulama, hem kelime dağarcığını geliştirmene hem de fiil çekimlerini (özellikle geçmiş zaman ve şimdiki zaman) tekrar etmene yardımcı olacak.
-
-**Bazı İpuçları:**
-*   Hikaye geçmişte başladığı için çoğu boşlukta **-di/-tı** geçmiş zaman ekini kullanmalısın.
-*   En son cümle genel bir alışkanlıktan bahsettiği için **-iyor** şimdiki zamanı uygun olacaktır.
-*   "Tuz" ve "Tuzlu" arasındaki farka dikkat et!
-
-İyi çalışmalar, başarılar dilerim!
