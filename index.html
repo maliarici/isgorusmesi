@@ -3,194 +3,403 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ali'nin Kahve Macerası</title>
+  <title>İş Görüşmesi</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 24px;
-      background: #fffbeb;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
       font-family: Arial, Helvetica, sans-serif;
       color: #1f2937;
     }
-    .card {
+
+    .container {
       width: 100%;
-      max-width: 760px;
-      background: white;
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
       padding: 34px;
-      border-radius: 20px;
-      box-shadow: 0 18px 45px rgba(120, 53, 15, .15);
+      border-radius: 22px;
+      box-shadow: 0 18px 50px rgba(30, 41, 59, 0.13);
     }
+
     h1 {
-      margin: 0 0 8px;
-      text-align: center;
-      color: #92400e;
-      font-size: 32px;
-    }
-    .level {
       margin: 0 0 24px;
       text-align: center;
-      color: #d97706;
-      font-style: italic;
+      color: #3730a3;
+      font-size: 34px;
     }
-    .instruction {
-      padding: 16px;
+
+    .instructions {
       margin-bottom: 24px;
-      border-radius: 12px;
-      background: #fef3c7;
-      color: #78350f;
-      line-height: 1.55;
-      font-size: 15px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: #eef2ff;
+      color: #312e81;
+      line-height: 1.5;
+      font-size: 16px;
     }
-    .story {
-      margin-bottom: 30px;
+
+    .word-bank-title {
+      margin: 0 0 10px;
+      color: #374151;
       font-size: 18px;
-      line-height: 2.25;
+    }
+
+    .word-bank {
+      min-height: 88px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      padding: 16px;
+      border: 2px dashed #a5b4fc;
+      border-radius: 14px;
+      background: #f8faff;
+    }
+
+    .word {
+      padding: 9px 14px;
+      border: 1px solid #818cf8;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #3730a3;
+      font-weight: 700;
+      cursor: grab;
+      user-select: none;
+      box-shadow: 0 3px 8px rgba(79, 70, 229, 0.12);
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .word:hover {
+      transform: translateY(-2px);
+      background: #eef2ff;
+    }
+
+    .word:active { cursor: grabbing; }
+
+    .word.selected {
+      outline: 3px solid #f59e0b;
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .story {
+      font-size: 18px;
+      line-height: 2.35;
       text-align: justify;
     }
-    .gap-input {
-      width: 125px;
-      padding: 4px 6px;
-      border: 0;
-      border-bottom: 2px solid #3b82f6;
-      outline: none;
-      text-align: center;
-      font-size: 16px;
-      transition: .25s;
-    }
-    .gap-input:focus {
-      background: #eff6ff;
-      border-bottom-color: #1d4ed8;
-    }
-    .gap-input.correct {
-      background: #d1fae5;
-      border-bottom-color: #10b981;
-      color: #065f46;
-    }
-    .gap-input.incorrect {
-      background: #fee2e2;
-      border-bottom-color: #ef4444;
-      color: #991b1b;
-    }
-    .actions {
-      display: flex;
-      flex-direction: column;
+
+    .drop-zone {
+      display: inline-flex;
+      width: 145px;
+      min-height: 34px;
+      margin: 0 4px;
+      padding: 3px 7px;
       align-items: center;
-      gap: 14px;
-    }
-    .check {
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 28px;
-      background: #d97706;
-      color: white;
+      justify-content: center;
+      vertical-align: middle;
+      border: 2px dashed #6366f1;
+      border-radius: 8px;
+      background: #f8faff;
+      color: #312e81;
       font-size: 16px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 7px 16px rgba(217,119,6,.25);
+      transition: 0.2s;
     }
-    .check:hover { background: #b45309; }
-    .reset {
+
+    .drop-zone.drag-over {
+      background: #e0e7ff;
+      transform: scale(1.03);
+    }
+
+    .drop-zone.filled {
+      border-style: solid;
+      background: #eef2ff;
+    }
+
+    .drop-zone.correct {
+      border-color: #10b981;
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .drop-zone.incorrect {
+      border-color: #ef4444;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    button {
       border: 0;
-      background: transparent;
-      color: #b45309;
-      text-decoration: underline;
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 700;
       cursor: pointer;
+      transition: 0.2s;
     }
-    #resultMessage { min-height: 24px; margin: 0; font-weight: 700; }
+
+    .check-button {
+      background: #4f46e5;
+      color: white;
+      box-shadow: 0 7px 16px rgba(79, 70, 229, 0.25);
+    }
+
+    .check-button:hover { background: #4338ca; }
+
+    .reset-button {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .reset-button:hover { background: #d1d5db; }
+
+    #result {
+      min-height: 30px;
+      margin: 20px 0 0;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
     .success { color: #059669; }
     .partial { color: #b45309; }
-    @media (max-width: 600px) {
-      body { padding: 12px; align-items: flex-start; }
-      .card { padding: 22px; }
-      h1 { font-size: 26px; }
-      .story { font-size: 16px; line-height: 2.45; text-align: left; }
-      .gap-input { width: 110px; }
+
+    @media (max-width: 650px) {
+      body { padding: 10px; }
+      .container { padding: 22px 16px; }
+      h1 { font-size: 28px; }
+      .story {
+        font-size: 16px;
+        line-height: 2.5;
+        text-align: left;
+      }
+      .drop-zone {
+        width: 125px;
+        font-size: 14px;
+      }
+      .word { font-size: 14px; }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <h1>☕ Ali'nin Kahve Macerası</h1>
-    <p class="level">A1.2–A2.1 Seviyesi Boşluk Doldurma Etkinliği</p>
+  <main class="container">
+    <h1>İş Görüşmesi</h1>
 
-    <section class="instruction">
-      <strong>Yönerge:</strong> Metindeki boşlukları, parantez içindeki sözcükleri
-      uygun biçimde kullanarak doldurunuz.
+    <section class="instructions">
+      Doğru kelimeyi seçelim ve boşluğa taşıyalım.
     </section>
+
+    <h2 class="word-bank-title">Kelimeler</h2>
+    <section id="wordBank" class="word-bank" aria-label="Kelime havuzu"></section>
 
     <section class="story">
-      Ali bu sabah saat 07.00'de
-      <input type="text" data-answer="uyandı" class="gap-input" placeholder="uyanmak" aria-label="uyanmak">.
-      Hava çok güzeldi, bu yüzden pencereyi
-      <input type="text" data-answer="açtı" class="gap-input" placeholder="açmak" aria-label="açmak">.
-      Mutfakta kendine büyük bir kahve
-      <input type="text" data-answer="yapmak" class="gap-input" placeholder="yapmak" aria-label="yapmak">
-      istedi. Cezveye su koydu ve ocağı yaktı. Ama Ali çok
-      <input type="text" data-answer="uykuluydu" class="gap-input" placeholder="uykulu" aria-label="uykulu">.
-      Yanlışlıkla şeker kavanozu yerine
-      <input type="text" data-answer="tuz" class="gap-input" placeholder="tuz" aria-label="tuz">
-      kavanozunu aldı. Kahvesine iki kaşık tuz
-      <input type="text" data-answer="attı" class="gap-input" placeholder="atmak" aria-label="atmak">.
-      Sonra kahvesinden büyük bir yudum
-      <input type="text" data-answer="aldı" class="gap-input" placeholder="almak" aria-label="almak">.
-      Birden Ali'nin gözleri fal taşı gibi açıldı! “Aman Allah'ım! Bu kahve çok
-      <input type="text" data-answer="tuzlu" class="gap-input" placeholder="tuzlu" aria-label="tuzlu">!”
-      diye
-      <input type="text" data-answer="bağırdı" class="gap-input" placeholder="bağırmak" aria-label="bağırmak">.
-      Ali o günden sonra kahve yaparken her zaman kavanozları
-      <input type="text" data-answer="kontrol ediyor" class="gap-input" placeholder="kontrol etmek" aria-label="kontrol etmek">.
+      Dün sabah çok heyecanlıydım çünkü önemli bir randevum
+      <span class="drop-zone" data-answer="vardı" tabindex="0"></span>.
+      Bu bir iş görüşmesiydi. Erkenden kalktım ve beyaz gömleğimi
+      <span class="drop-zone" data-answer="giydim" tabindex="0"></span>.
+      Aynada kendime baktım, çok şıktım. Sonra hemen evden çıktım.
+      Otobüse bindim ama otobüs çok
+      <span class="drop-zone" data-answer="kalabalıktı" tabindex="0"></span>.
+      Herkes işe gidiyordu. Biraz gittikten sonra şoför aniden frene bastı
+      ve yanımdaki adam kahvesini yanlışlıkla gömleğime
+      <span class="drop-zone" data-answer="döktü" tabindex="0"></span>.
+      Beyaz gömleğim artık kahverengiydi! Çok sinirlendim ama adama hiçbir şey
+      <span class="drop-zone" data-answer="söylemedim" tabindex="0"></span>.
+      Şirkete gittim ve patronun odasına
+      <span class="drop-zone" data-answer="girdim" tabindex="0"></span>.
+      İçeride çok gergindim. Patron bana baktı ve gülümsedi.
+      “Gömleğinizin deseni çok ilginç!”
+      <span class="drop-zone" data-answer="dedi" tabindex="0"></span>.
+      Ben de hemen “Evet, yeni moda.” diye cevap
+      <span class="drop-zone" data-answer="verdim" tabindex="0"></span>.
+      Şanslıyım ki patron esprimi beğendi ve yeni işime
+      <span class="drop-zone" data-answer="başladım" tabindex="0"></span>!
     </section>
 
-    <section class="actions">
-      <button class="check" onclick="checkAnswers()">Cevapları Kontrol Et</button>
-      <p id="resultMessage" aria-live="polite"></p>
-      <button class="reset" onclick="resetQuiz()">Temizle ve Tekrar Dene</button>
-    </section>
+    <div class="actions">
+      <button class="check-button" onclick="checkAnswers()">Cevapları Kontrol Et</button>
+      <button class="reset-button" onclick="resetActivity()">Temizle ve Tekrar Dene</button>
+    </div>
+
+    <p id="result" aria-live="polite"></p>
   </main>
 
   <script>
-    function normalizeText(text) {
-      return text.trim().toLocaleLowerCase('tr-TR').replace(/\s+/g, ' ');
+    const words = [
+      "başladım", "dedi", "döktü", "girdim", "giydim",
+      "kalabalıktı", "söylemedim", "vardı", "verdim"
+    ];
+
+    const wordBank = document.getElementById("wordBank");
+    const zones = document.querySelectorAll(".drop-zone");
+    let selectedWord = null;
+
+    function shuffle(array) {
+      return [...array].sort(() => Math.random() - 0.5);
     }
 
-    function checkAnswers() {
-      const inputs = document.querySelectorAll('.gap-input');
-      let correctCount = 0;
+    function createWord(word) {
+      const item = document.createElement("span");
+      item.className = "word";
+      item.textContent = word;
+      item.draggable = true;
+      item.dataset.word = word;
 
-      inputs.forEach(input => {
-        const isCorrect =
-          normalizeText(input.value) === normalizeText(input.dataset.answer);
-
-        input.classList.toggle('correct', isCorrect);
-        input.classList.toggle('incorrect', !isCorrect);
-        if (isCorrect) correctCount++;
+      item.addEventListener("dragstart", event => {
+        event.dataTransfer.setData("text/plain", word);
+        event.dataTransfer.effectAllowed = "move";
       });
 
-      const result = document.getElementById('resultMessage');
-      if (correctCount === inputs.length) {
-        result.textContent = 'Tebrikler! Bütün cevaplar doğru! 🎉';
-        result.className = 'success';
+      item.addEventListener("click", () => {
+        document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
+        selectedWord = word;
+        item.classList.add("selected");
+      });
+
+      return item;
+    }
+
+    function fillWordBank() {
+      wordBank.innerHTML = "";
+      shuffle(words).forEach(word => wordBank.appendChild(createWord(word)));
+    }
+
+    function findWordElement(word) {
+      return [...document.querySelectorAll(".word")]
+        .find(item => item.dataset.word === word);
+    }
+
+    function returnCurrentWord(zone) {
+      const currentWord = zone.dataset.value;
+      if (!currentWord) return;
+
+      if (!findWordElement(currentWord)) {
+        wordBank.appendChild(createWord(currentWord));
+      }
+
+      zone.textContent = "";
+      zone.dataset.value = "";
+      zone.classList.remove("filled", "correct", "incorrect");
+    }
+
+    function placeWord(zone, word) {
+      if (!word) return;
+
+      returnCurrentWord(zone);
+
+      const wordElement = findWordElement(word);
+      if (wordElement) wordElement.remove();
+
+      zone.textContent = word;
+      zone.dataset.value = word;
+      zone.classList.add("filled");
+      zone.classList.remove("correct", "incorrect");
+
+      selectedWord = null;
+      document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
+      document.getElementById("result").textContent = "";
+    }
+
+    zones.forEach(zone => {
+      zone.addEventListener("dragover", event => {
+        event.preventDefault();
+        zone.classList.add("drag-over");
+      });
+
+      zone.addEventListener("dragleave", () => {
+        zone.classList.remove("drag-over");
+      });
+
+      zone.addEventListener("drop", event => {
+        event.preventDefault();
+        zone.classList.remove("drag-over");
+        placeWord(zone, event.dataTransfer.getData("text/plain"));
+      });
+
+      zone.addEventListener("click", () => {
+        if (selectedWord) placeWord(zone, selectedWord);
+      });
+
+      zone.addEventListener("dblclick", () => {
+        returnCurrentWord(zone);
+        document.getElementById("result").textContent = "";
+      });
+
+      zone.addEventListener("keydown", event => {
+        if ((event.key === "Enter" || event.key === " ") && selectedWord) {
+          event.preventDefault();
+          placeWord(zone, selectedWord);
+        }
+
+        if (event.key === "Backspace" || event.key === "Delete") {
+          returnCurrentWord(zone);
+        }
+      });
+    });
+
+    wordBank.addEventListener("dragover", event => {
+      event.preventDefault();
+    });
+
+    wordBank.addEventListener("drop", event => {
+      event.preventDefault();
+      const word = event.dataTransfer.getData("text/plain");
+
+      zones.forEach(zone => {
+        if (zone.dataset.value === word) returnCurrentWord(zone);
+      });
+    });
+
+    function checkAnswers() {
+      let correct = 0;
+
+      zones.forEach(zone => {
+        const isCorrect = zone.dataset.value === zone.dataset.answer;
+        zone.classList.toggle("correct", isCorrect);
+        zone.classList.toggle("incorrect", !isCorrect);
+        if (isCorrect) correct++;
+      });
+
+      const result = document.getElementById("result");
+
+      if (correct === zones.length) {
+        result.textContent = "Tebrikler! Bütün cevaplar doğru!";
+        result.className = "success";
       } else {
-        result.textContent =
-          `${inputs.length} boşluktan ${correctCount} tanesi doğru. Tekrar dene! 💪`;
-        result.className = 'partial';
+        result.textContent = `${correct}/${zones.length}`;
+        result.className = "partial";
       }
     }
 
-    function resetQuiz() {
-      document.querySelectorAll('.gap-input').forEach(input => {
-        input.value = '';
-        input.classList.remove('correct', 'incorrect');
+    function resetActivity() {
+      zones.forEach(zone => {
+        zone.textContent = "";
+        zone.dataset.value = "";
+        zone.classList.remove("filled", "correct", "incorrect", "drag-over");
       });
-      const result = document.getElementById('resultMessage');
-      result.textContent = '';
-      result.className = '';
+
+      selectedWord = null;
+      document.getElementById("result").textContent = "";
+      document.getElementById("result").className = "";
+      fillWordBank();
     }
+
+    fillWordBank();
   </script>
 </body>
 </html>
