@@ -132,6 +132,12 @@
       background: rgba(255, 250, 235, 0.45);
     }
 
+    .narrow-content {
+      width: 88%;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
     .drop-zone {
       display: inline-flex;
       width: 145px;
@@ -264,6 +270,7 @@
       .drop-zone { width: 126px; min-width: 126px; font-size: 14px; }
       .instructions { font-size: 16px; }
       .hero-image { width: 100%; max-width: 100%; }
+      .narrow-content { width: 100%; max-width: 100%; }
     }
 
     @media (max-width: 430px) {
@@ -279,6 +286,7 @@
 
     <section id="wordBank" class="word-bank" aria-label="Kelime havuzu"></section>
 
+    <div class="narrow-content">
     <section class="story">
       Dün sabah çok heyecanlıydım çünkü önemli bir randevum
       <span class="drop-zone" data-answer="vardı" tabindex="0"></span>.
@@ -297,8 +305,7 @@
       İçeride çok gergindim. Patron bana baktı ve gülümsedi.
       “Gömleğinizin deseni çok ilginç!”
       <span class="drop-zone" data-answer="dedi" tabindex="0"></span>.
-      Ben de hemen “Evet, yeni moda.” diye cevap
-      <span class="drop-zone" data-answer="verdim" tabindex="0"></span>.
+      Ben de hemen “Evet, yeni moda.” diye cevap verdim.
       Şanslıyım ki patron esprimi beğendi ve yeni işime
       <span class="drop-zone" data-answer="başladım" tabindex="0"></span>!
     </section>
@@ -306,6 +313,7 @@
     <div class="hero-image-wrap">
       <img src="adam.png" alt="İş görüşmesine giden genç bir adam" class="hero-image">
       <div class="hero-caption">Metne uygun görsel</div>
+    </div>
     </div>
 
     <div class="actions">
@@ -319,7 +327,7 @@
   <script>
     const words = [
       "başladım", "dedi", "döktü", "girdim", "giydim",
-      "kalabalıktı", "söylemedim", "vardı", "verdim"
+      "kalabalıktı", "söylemedim", "vardı"
     ];
 
     const wordBank = document.getElementById("wordBank");
