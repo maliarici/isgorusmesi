@@ -2,30 +2,18 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>İş Görüşmesi</title>
 
-  <link
-    rel="icon"
-    href="./turkey.ico?v=4"
-    type="image/x-icon"
-  >
+  <link rel="icon" href="./turkey.ico?v=4" type="image/x-icon">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
       padding: 24px;
-
       background:
         repeating-linear-gradient(
           0deg,
@@ -35,7 +23,6 @@
           transparent 4px
         ),
         #d8c7a7;
-
       font-family: Georgia, "Times New Roman", serif;
       color: #3d2f23;
     }
@@ -45,16 +32,10 @@
       max-width: 920px;
       margin: 0 auto;
       padding: 38px;
-
       background:
-        linear-gradient(
-          rgba(255, 250, 235, 0.94),
-          rgba(244, 233, 205, 0.96)
-        );
-
+        linear-gradient(rgba(255, 250, 235, 0.94), rgba(244, 233, 205, 0.96));
       border: 1px solid #8d7657;
       border-radius: 4px;
-
       box-shadow:
         0 18px 40px rgba(69, 49, 28, 0.22),
         inset 0 0 0 6px rgba(121, 92, 57, 0.08);
@@ -62,24 +43,15 @@
 
     h1 {
       margin: 0 0 14px;
-      padding-bottom: 12px;
-
       text-align: center;
-      font-family:
-        "Brush Script MT",
-        "Segoe Script",
-        "Lucida Handwriting",
-        cursive;
-
+      font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
       font-size: clamp(40px, 6vw, 60px);
       font-weight: 400;
       letter-spacing: 1px;
       color: #3e2d1f;
-
-      text-shadow:
-        1px 1px 0 rgba(255, 248, 231, 0.8);
-
+      text-shadow: 1px 1px 0 rgba(255, 248, 231, 0.8);
       border-bottom: 3px double #5f4a35;
+      padding-bottom: 12px;
     }
 
     .instructions {
@@ -92,20 +64,15 @@
 
     .word-bank {
       display: grid;
-      grid-template-columns:
-        repeat(4, minmax(130px, 1fr));
-
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
       gap: 10px;
       min-height: 106px;
       width: 88%;
       max-width: 760px;
-
       margin: 0 auto 30px;
       padding: 16px;
-
       border: 1px solid #8d7657;
       border-radius: 2px;
-
       background:
         repeating-linear-gradient(
           0deg,
@@ -126,35 +93,22 @@
       display: flex;
       width: 100%;
       height: 38px;
-
       align-items: center;
       justify-content: center;
-
       padding: 7px 10px;
-
       border: 1px solid #6f573d;
       border-radius: 2px;
-
       background: #f7edd6;
       color: #3f3022;
-
       font-size: 15px;
       font-weight: 700;
-
       cursor: grab;
       user-select: none;
       -webkit-user-select: none;
       -webkit-touch-callout: none;
-
       touch-action: none;
-
-      box-shadow:
-        1px 2px 0 rgba(82, 61, 39, 0.22);
-
-      transition:
-        background 0.15s,
-        transform 0.15s,
-        opacity 0.15s;
+      box-shadow: 1px 2px 0 rgba(82, 61, 39, 0.22);
+      transition: background 0.15s, transform 0.15s, opacity 0.15s;
     }
 
     .word:hover {
@@ -162,9 +116,7 @@
       transform: translateY(-1px);
     }
 
-    .word:active {
-      cursor: grabbing;
-    }
+    .word:active { cursor: grabbing; }
 
     .word.selected {
       outline: 2px solid #7a5b38;
@@ -177,38 +129,14 @@
       pointer-events: none;
     }
 
-    .touch-dragging {
-      opacity: 0.45;
-    }
-
-    .touch-drag-ghost {
-      position: fixed;
-      z-index: 9999;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      min-width: 120px;
-      height: 38px;
-      padding: 7px 14px;
-
-      border: 1px solid #6f573d;
-      border-radius: 2px;
-
-      background: #f7edd6;
-      color: #3f3022;
-
-      font-size: 15px;
-      font-weight: 700;
-
-      box-shadow:
-        0 8px 20px rgba(69, 49, 28, 0.3);
-
-      pointer-events: none;
-
-      transform: translate(-50%, -50%);
-      opacity: 0.96;
+    .story {
+      font-size: 18px;
+      line-height: 2.35;
+      text-align: justify;
+      padding: 22px 20px;
+      border-top: 1px solid #8d7657;
+      border-bottom: 1px solid #8d7657;
+      background: rgba(255, 250, 235, 0.45);
     }
 
     .narrow-content {
@@ -217,75 +145,44 @@
       margin: 0 auto;
     }
 
-    .story {
-      padding: 22px 20px;
-
-      font-size: 18px;
-      line-height: 2.35;
-      text-align: justify;
-
-      border-top: 1px solid #8d7657;
-      border-bottom: 1px solid #8d7657;
-
-      background:
-        rgba(255, 250, 235, 0.45);
-    }
-
     .drop-zone {
       display: inline-flex;
-
       width: 145px;
       min-width: 145px;
       height: 36px;
-
       margin: 0 4px;
       padding: 3px 8px;
-
       align-items: center;
       justify-content: center;
-
       vertical-align: middle;
-
       border: 1px dashed #70583f;
       border-radius: 2px;
-
       background: #f7edd6;
       color: #3f3022;
-
       font-size: 15px;
       font-weight: 700;
-
       white-space: nowrap;
       cursor: pointer;
-
-      transition:
-        background 0.15s,
-        border-color 0.15s,
-        box-shadow 0.15s;
+      transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
 
     .drop-zone.drag-over {
       border-color: #4d3926;
       background: #e4d1a8;
-
-      box-shadow:
-        0 0 0 2px rgba(77, 57, 38, 0.16);
+      box-shadow: 0 0 0 2px rgba(77, 57, 38, 0.16);
     }
 
     .drop-zone.filled {
       border-style: solid;
       background: #e9d8b5;
       cursor: grab;
-
       touch-action: none;
       user-select: none;
       -webkit-user-select: none;
       -webkit-touch-callout: none;
     }
 
-    .drop-zone.filled:active {
-      cursor: grabbing;
-    }
+    .drop-zone.filled:active { cursor: grabbing; }
 
     .drop-zone.selected {
       outline: 2px solid #7a5b38;
@@ -305,6 +202,30 @@
       color: #6f271f;
     }
 
+    .touch-dragging {
+      opacity: 0.35;
+    }
+
+    .drag-ghost {
+      position: fixed;
+      z-index: 99999;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      min-width: 120px;
+      height: 38px;
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #6f573d;
+      border-radius: 2px;
+      background: #f7edd6;
+      color: #3f3022;
+      font-size: 15px;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(69, 49, 28, 0.35);
+    }
+
     .hero-image-wrap {
       margin: 26px 0 0;
       padding: 0 20px;
@@ -312,18 +233,13 @@
     }
 
     .hero-image {
-      display: block;
-
       width: 100%;
       max-width: 100%;
-
+      display: block;
       margin: 0 auto;
-
       border: 8px solid #f4e9cd;
       outline: 1px solid #8d7657;
-
-      box-shadow:
-        0 10px 24px rgba(69, 49, 28, 0.18);
+      box-shadow: 0 10px 24px rgba(69, 49, 28, 0.18);
     }
 
     .hero-caption {
@@ -337,86 +253,56 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-
       gap: 12px;
       margin-top: 30px;
     }
 
     button {
-      padding: 12px 23px;
-
       border: 0;
       border-radius: 2px;
-
+      padding: 12px 23px;
       font-size: 15px;
       font-weight: 700;
-
       cursor: pointer;
-
-      transition:
-        transform 0.15s,
-        background 0.15s;
+      transition: transform 0.15s, background 0.15s;
     }
 
-    button:hover {
-      transform: translateY(-1px);
-    }
+    button:hover { transform: translateY(-1px); }
 
     .check-button {
       background: #4a3827;
       color: #f7edd6;
-
       border: 1px solid #2f241a;
-
-      box-shadow:
-        2px 3px 0 rgba(54, 39, 24, 0.25);
+      box-shadow: 2px 3px 0 rgba(54, 39, 24, 0.25);
     }
 
-    .check-button:hover {
-      background: #2f241a;
-    }
+    .check-button:hover { background: #2f241a; }
 
     .reset-button {
       background: #d8c39b;
       color: #3f3022;
-
       border: 1px solid #70583f;
     }
 
-    .reset-button:hover {
-      background: #c9af7d;
-    }
+    .reset-button:hover { background: #c9af7d; }
 
     #result {
       min-height: 30px;
       margin: 20px 0 0;
-
       text-align: center;
       font-size: 21px;
       font-weight: 700;
     }
 
-    .success {
-      color: #49633f;
-    }
-
-    .partial {
-      color: #7a4e22;
-    }
+    .success { color: #49633f; }
+    .partial { color: #7a4e22; }
 
     @media (max-width: 760px) {
-      body {
-        padding: 10px;
-      }
-
-      .container {
-        padding: 24px 16px;
-      }
+      body { padding: 10px; }
+      .container { padding: 24px 16px; }
 
       .word-bank {
-        grid-template-columns:
-          repeat(4, minmax(90px, 1fr));
-
+        grid-template-columns: repeat(4, minmax(90px, 1fr));
         min-height: 106px;
       }
 
@@ -432,9 +318,7 @@
         font-size: 14px;
       }
 
-      .instructions {
-        font-size: 16px;
-      }
+      .instructions { font-size: 16px; }
 
       .hero-image {
         width: 100%;
@@ -449,9 +333,7 @@
 
     @media (max-width: 430px) {
       .word-bank {
-        grid-template-columns:
-          repeat(2, minmax(105px, 1fr));
-
+        grid-template-columns: repeat(2, minmax(105px, 1fr));
         min-height: 202px;
       }
     }
@@ -466,84 +348,30 @@
       Doğru kelimeyi seçelim ve boşluğa taşıyalım.
     </p>
 
-    <section
-      id="wordBank"
-      class="word-bank"
-      aria-label="Kelime havuzu"
-    ></section>
+    <section id="wordBank" class="word-bank" aria-label="Kelime havuzu"></section>
 
     <div class="narrow-content">
       <section class="story">
         Dün sabah çok heyecanlıydım çünkü önemli bir randevum
-
-        <span
-          class="drop-zone"
-          data-answer="vardı"
-          tabindex="0"
-        ></span>.
-
-        Bu bir iş görüşmesiydi. Erkenden kalktım ve beyaz
-        gömleğimi
-
-        <span
-          class="drop-zone"
-          data-answer="giydim"
-          tabindex="0"
-        ></span>.
-
-        Aynada kendime baktım, çok şıktım. Sonra hemen
-        evden çıktım. Otobüse bindim ancak otobüs çok
-
-        <span
-          class="drop-zone"
-          data-answer="kalabalıktı"
-          tabindex="0"
-        ></span>.
-
-        Herkes işe gidiyordu. Biraz gittikten sonra şoför
-        aniden frene bastı ve yanımdaki kadın kahvesini
-        yanlışlıkla gömleğime
-
-        <span
-          class="drop-zone"
-          data-answer="döktü"
-          tabindex="0"
-        ></span>.
-
-        Beyaz gömleğim artık kahverengiydi! Çok sinirlendim
-        ama kadına hiçbir şey
-
-        <span
-          class="drop-zone"
-          data-answer="söylemedim"
-          tabindex="0"
-        ></span>.
-
+        <span class="drop-zone" data-answer="vardı" tabindex="0"></span>.
+        Bu bir iş görüşmesiydi. Erkenden kalktım ve beyaz gömleğimi
+        <span class="drop-zone" data-answer="giydim" tabindex="0"></span>.
+        Aynada kendime baktım, çok şıktım. Sonra hemen evden çıktım.
+        Otobüse bindim ancak otobüs çok
+        <span class="drop-zone" data-answer="kalabalıktı" tabindex="0"></span>.
+        Herkes işe gidiyordu. Biraz gittikten sonra şoför aniden frene bastı
+        ve yanımdaki kadın kahvesini yanlışlıkla gömleğime
+        <span class="drop-zone" data-answer="döktü" tabindex="0"></span>.
+        Beyaz gömleğim artık kahverengiydi! Çok sinirlendim ama kadına hiçbir şey
+        <span class="drop-zone" data-answer="söylemedim" tabindex="0"></span>.
         Şirkete gittim ve patronun odasına
-
-        <span
-          class="drop-zone"
-          data-answer="girdim"
-          tabindex="0"
-        ></span>.
-
-        İçeride çok gergindim. Patron bana baktı ve
-        gülümsedi. “Gömleğinizin deseni çok ilginç!”
-
-        <span
-          class="drop-zone"
-          data-answer="dedi"
-          tabindex="0"
-        ></span>.
-
+        <span class="drop-zone" data-answer="girdim" tabindex="0"></span>.
+        İçeride çok gergindim. Patron bana baktı ve gülümsedi.
+        “Gömleğinizin deseni çok ilginç!”
+        <span class="drop-zone" data-answer="dedi" tabindex="0"></span>.
         Ben de hemen “Evet, yeni moda.” diye cevap verdim.
         Şanslıyım ki patron esprimi beğendi ve yeni işime
-
-        <span
-          class="drop-zone"
-          data-answer="başladım"
-          tabindex="0"
-        ></span>!
+        <span class="drop-zone" data-answer="başladım" tabindex="0"></span>!
       </section>
 
       <div class="hero-image-wrap">
@@ -552,35 +380,21 @@
           alt="İş görüşmesine giden genç bir adam"
           class="hero-image"
         >
-
-        <div class="hero-caption">
-          Küçük bir kaza.
-        </div>
+        <div class="hero-caption">Küçük bir kaza.</div>
       </div>
     </div>
 
     <div class="actions">
-      <button
-        class="check-button"
-        type="button"
-        onclick="checkAnswers()"
-      >
+      <button class="check-button" type="button" onclick="checkAnswers()">
         Cevapları Kontrol Et
       </button>
 
-      <button
-        class="reset-button"
-        type="button"
-        onclick="resetActivity()"
-      >
+      <button class="reset-button" type="button" onclick="resetActivity()">
         Temizle ve Tekrar Dene
       </button>
     </div>
 
-    <p
-      id="result"
-      aria-live="polite"
-    ></p>
+    <p id="result" aria-live="polite"></p>
   </main>
 
   <script>
@@ -595,40 +409,22 @@
       "vardı"
     ];
 
-    const wordBank =
-      document.getElementById("wordBank");
-
-    const zones = [
-      ...document.querySelectorAll(".drop-zone")
-    ];
+    const wordBank = document.getElementById("wordBank");
+    const zones = [...document.querySelectorAll(".drop-zone")];
 
     let selectedItem = null;
     let draggedItem = null;
 
-    const TOUCH_DRAG_THRESHOLD = 8;
-
-    let pointerDragState = null;
-    let touchDragGhost = null;
-    let suppressClickUntil = 0;
+    let touchState = null;
+    let dragGhost = null;
+    let blockClickUntil = 0;
 
     function shuffle(array) {
       const copy = [...array];
 
-      for (
-        let i = copy.length - 1;
-        i > 0;
-        i--
-      ) {
-        const j =
-          Math.floor(Math.random() * (i + 1));
-
-        [
-          copy[i],
-          copy[j]
-        ] = [
-          copy[j],
-          copy[i]
-        ];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
       }
 
       return copy;
@@ -637,32 +433,19 @@
     function clearSelection() {
       selectedItem = null;
 
-      document
-        .querySelectorAll(".word, .drop-zone")
-        .forEach(item => {
-          item.classList.remove("selected");
-        });
-    }
-
-    function selectItem(source, element) {
-      clearSelection();
-
-      selectedItem = source;
-      element.classList.add("selected");
+      document.querySelectorAll(".word, .drop-zone").forEach(item => {
+        item.classList.remove("selected");
+      });
     }
 
     function getBankWord(word) {
-      return document.querySelector(
-        `.word[data-word="${word}"]`
-      );
+      return document.querySelector(`.word[data-word="${word}"]`);
     }
 
     function setBankWordUsed(word, used) {
       const bankWord = getBankWord(word);
 
-      if (!bankWord) {
-        return;
-      }
+      if (!bankWord) return;
 
       bankWord.classList.toggle("used", used);
       bankWord.classList.remove("selected");
@@ -685,15 +468,7 @@
       setBankWordUsed(word, true);
     }
 
-    function returnZoneWordToBank(zone) {
-      const oldWord = zone.dataset.value;
-
-      if (!oldWord) {
-        return;
-      }
-
-      setBankWordUsed(oldWord, false);
-
+    function emptyZone(zone) {
       zone.textContent = "";
       zone.dataset.value = "";
       zone.draggable = false;
@@ -705,32 +480,32 @@
         "selected",
         "drag-over"
       );
+    }
 
+    function returnZoneWordToBank(zone) {
+      const oldWord = zone.dataset.value;
+
+      if (!oldWord) return;
+
+      setBankWordUsed(oldWord, false);
+      emptyZone(zone);
       clearSelection();
 
       document.getElementById("result").textContent = "";
     }
 
     function moveOrSwap(source, target) {
-      if (!source || !target) {
+      if (!source || !target) return;
+
+      if (source.type === "zone" && source.zone === target) {
         clearSelection();
         return;
       }
 
-      const sourceType = source.type;
       const sourceWord = source.word;
-      const sourceZone = source.zone || null;
       const targetWord = target.dataset.value || "";
 
-      if (
-        sourceType === "zone" &&
-        sourceZone === target
-      ) {
-        clearSelection();
-        return;
-      }
-
-      if (sourceType === "bank") {
+      if (source.type === "bank") {
         if (targetWord) {
           setBankWordUsed(targetWord, false);
         }
@@ -738,99 +513,75 @@
         setZoneWord(target, sourceWord);
       }
 
-      if (
-        sourceType === "zone" &&
-        sourceZone
-      ) {
+      if (source.type === "zone" && source.zone) {
         if (targetWord) {
-          sourceZone.textContent = targetWord;
-          sourceZone.dataset.value = targetWord;
-          sourceZone.draggable = true;
+          source.zone.textContent = targetWord;
+          source.zone.dataset.value = targetWord;
+          source.zone.draggable = true;
 
-          sourceZone.classList.add("filled");
+          source.zone.classList.add("filled");
 
-          sourceZone.classList.remove(
+          source.zone.classList.remove(
             "correct",
             "incorrect",
             "selected"
           );
         } else {
-          sourceZone.textContent = "";
-          sourceZone.dataset.value = "";
-          sourceZone.draggable = false;
-
-          sourceZone.classList.remove(
-            "filled",
-            "correct",
-            "incorrect",
-            "selected"
-          );
+          emptyZone(source.zone);
         }
 
         setZoneWord(target, sourceWord);
       }
 
       clearSelection();
-
       document.getElementById("result").textContent = "";
     }
 
-    function createWord(word) {
-      const slot =
-        document.createElement("div");
+    function selectSource(source, element) {
+      clearSelection();
+      selectedItem = source;
+      element.classList.add("selected");
+    }
 
+    function createWord(word) {
+      const slot = document.createElement("div");
       slot.className = "word-slot";
 
-      const item =
-        document.createElement("span");
-
+      const item = document.createElement("span");
       item.className = "word";
       item.textContent = word;
       item.draggable = true;
       item.dataset.word = word;
 
-      item.addEventListener(
-        "dragstart",
-        event => {
-          draggedItem = {
+      item.addEventListener("dragstart", event => {
+        draggedItem = {
+          type: "bank",
+          word: word,
+          zone: null
+        };
+
+        event.dataTransfer.setData("text/plain", word);
+        event.dataTransfer.effectAllowed = "move";
+      });
+
+      item.addEventListener("dragend", () => {
+        draggedItem = null;
+      });
+
+      item.addEventListener("click", () => {
+        if (Date.now() < blockClickUntil) return;
+
+        selectSource(
+          {
             type: "bank",
             word: word,
             zone: null
-          };
-
-          event.dataTransfer.setData(
-            "text/plain",
-            word
-          );
-
-          event.dataTransfer.effectAllowed =
-            "move";
-        }
-      );
-
-      item.addEventListener(
-        "dragend",
-        () => {
-          draggedItem = null;
-        }
-      );
-
-      item.addEventListener(
-        "click",
-        () => {
-          selectItem(
-            {
-              type: "bank",
-              word: word,
-              zone: null
-            },
-            item
-          );
-        }
-      );
+          },
+          item
+        );
+      });
 
       slot.appendChild(item);
-
       return slot;
     }
 
@@ -838,104 +589,139 @@
       wordBank.innerHTML = "";
 
       shuffle(words).forEach(word => {
-        wordBank.appendChild(
-          createWord(word)
-        );
+        wordBank.appendChild(createWord(word));
       });
     }
 
-    function createTouchGhost(
-      word,
-      sourceElement,
-      x,
-      y
-    ) {
-      const rect =
-        sourceElement.getBoundingClientRect();
+    zones.forEach(zone => {
+      zone.draggable = false;
 
-      const ghost =
-        document.createElement("div");
+      zone.addEventListener("dragstart", event => {
+        const word = zone.dataset.value;
 
-      ghost.className =
-        "touch-drag-ghost";
+        if (!word) {
+          event.preventDefault();
+          return;
+        }
 
-      ghost.textContent = word;
+        draggedItem = {
+          type: "zone",
+          word: word,
+          zone: zone
+        };
 
-      ghost.style.width =
-        `${Math.max(120, rect.width)}px`;
+        event.dataTransfer.setData("text/plain", word);
+        event.dataTransfer.effectAllowed = "move";
+      });
 
-      ghost.style.left = `${x}px`;
-      ghost.style.top = `${y}px`;
+      zone.addEventListener("dragend", () => {
+        draggedItem = null;
+        zone.classList.remove("drag-over");
+      });
 
-      document.body.appendChild(ghost);
+      zone.addEventListener("dragover", event => {
+        event.preventDefault();
+        zone.classList.add("drag-over");
+        event.dataTransfer.dropEffect = "move";
+      });
 
-      return ghost;
-    }
+      zone.addEventListener("dragleave", () => {
+        zone.classList.remove("drag-over");
+      });
 
-    function moveTouchGhost(x, y) {
-      if (!touchDragGhost) {
-        return;
-      }
+      zone.addEventListener("drop", event => {
+        event.preventDefault();
+        zone.classList.remove("drag-over");
 
-      touchDragGhost.style.left =
-        `${x}px`;
+        if (draggedItem) {
+          moveOrSwap(draggedItem, zone);
+        }
+      });
 
-      touchDragGhost.style.top =
-        `${y}px`;
-    }
+      zone.addEventListener("click", () => {
+        if (Date.now() < blockClickUntil) return;
 
-    function clearTouchDragVisuals() {
-      document
-        .querySelectorAll(
-          ".drop-zone.drag-over"
-        )
-        .forEach(zone => {
-          zone.classList.remove(
-            "drag-over"
+        if (selectedItem) {
+          moveOrSwap(selectedItem, zone);
+          return;
+        }
+
+        const word = zone.dataset.value;
+
+        if (word) {
+          selectSource(
+            {
+              type: "zone",
+              word: word,
+              zone: zone
+            },
+            zone
           );
-        });
+        }
+      });
+
+      zone.addEventListener("dblclick", () => {
+        returnZoneWordToBank(zone);
+      });
+
+      zone.addEventListener("keydown", event => {
+        if (
+          (event.key === "Enter" || event.key === " ") &&
+          selectedItem
+        ) {
+          event.preventDefault();
+          moveOrSwap(selectedItem, zone);
+        }
+
+        if (
+          event.key === "Backspace" ||
+          event.key === "Delete"
+        ) {
+          event.preventDefault();
+          returnZoneWordToBank(zone);
+        }
+      });
+    });
+
+    wordBank.addEventListener("dragover", event => {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "move";
+    });
+
+    wordBank.addEventListener("drop", event => {
+      event.preventDefault();
 
       if (
-        pointerDragState &&
-        pointerDragState.sourceElement
+        draggedItem &&
+        draggedItem.type === "zone" &&
+        draggedItem.zone
       ) {
-        pointerDragState.sourceElement
-          .classList.remove(
-            "touch-dragging"
-          );
+        returnZoneWordToBank(draggedItem.zone);
       }
 
-      if (touchDragGhost) {
-        touchDragGhost.remove();
-        touchDragGhost = null;
-      }
-    }
+      draggedItem = null;
+    });
 
-    function getTouchSource(target) {
-      const bankWord =
-        target.closest(".word");
+    function getPointerSource(target) {
+      const wordElement = target.closest(".word");
 
       if (
-        bankWord &&
-        !bankWord.classList.contains("used")
+        wordElement &&
+        !wordElement.classList.contains("used")
       ) {
         return {
           source: {
             type: "bank",
-            word: bankWord.dataset.word,
+            word: wordElement.dataset.word,
             zone: null
           },
-          element: bankWord
+          element: wordElement
         };
       }
 
-      const zone =
-        target.closest(".drop-zone");
+      const zone = target.closest(".drop-zone");
 
-      if (
-        zone &&
-        zone.dataset.value
-      ) {
+      if (zone && zone.dataset.value) {
         return {
           source: {
             type: "zone",
@@ -948,590 +734,218 @@
 
       return {
         source: null,
-        element: zone || null
+        element: null
       };
     }
 
-    function handleTouchTap(
-      state,
-      targetZone
-    ) {
-      if (
-        targetZone &&
-        selectedItem
-      ) {
-        if (
-          selectedItem.type === "zone" &&
-          selectedItem.zone === targetZone
-        ) {
-          clearSelection();
-        } else {
-          moveOrSwap(
-            selectedItem,
-            targetZone
-          );
-        }
+    function createGhost(word, element, x, y) {
+      const rect = element.getBoundingClientRect();
 
-        return;
+      dragGhost = document.createElement("div");
+      dragGhost.className = "drag-ghost";
+      dragGhost.textContent = word;
+      dragGhost.style.width = Math.max(120, rect.width) + "px";
+      dragGhost.style.left = x + "px";
+      dragGhost.style.top = y + "px";
+
+      document.body.appendChild(dragGhost);
+    }
+
+    function moveGhost(x, y) {
+      if (!dragGhost) return;
+
+      dragGhost.style.left = x + "px";
+      dragGhost.style.top = y + "px";
+    }
+
+    function clearTouchDragging() {
+      document.querySelectorAll(".drop-zone.drag-over").forEach(zone => {
+        zone.classList.remove("drag-over");
+      });
+
+      if (touchState && touchState.element) {
+        touchState.element.classList.remove("touch-dragging");
       }
 
-      if (
-        state.source &&
-        state.sourceElement
-      ) {
-        selectItem(
-          state.source,
-          state.sourceElement
-        );
+      if (dragGhost) {
+        dragGhost.remove();
+        dragGhost = null;
       }
     }
 
-    function finishTouchPointer(
-      event,
-      cancelled = false
-    ) {
-      const state = pointerDragState;
+    document.addEventListener("pointerdown", event => {
+      if (event.pointerType === "mouse") return;
+      if (!event.isPrimary) return;
 
-      if (
-        !state ||
-        event.pointerId !== state.pointerId
-      ) {
+      const targetZone = event.target.closest(".drop-zone");
+      const found = getPointerSource(event.target);
+
+      if (!found.source && !(targetZone && selectedItem)) {
         return;
       }
 
       event.preventDefault();
 
-      suppressClickUntil =
-        Date.now() + 500;
+      touchState = {
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        source: found.source,
+        element: found.element,
+        targetZone: targetZone,
+        moved: false,
+        activeZone: null
+      };
 
-      const elementAtPoint =
-        document.elementFromPoint(
+      if (found.element) {
+        try {
+          found.element.setPointerCapture(event.pointerId);
+        } catch (error) {}
+      }
+    }, { passive: false });
+
+    document.addEventListener("pointermove", event => {
+      if (!touchState) return;
+      if (event.pointerId !== touchState.pointerId) return;
+      if (!touchState.source) return;
+
+      const distance = Math.hypot(
+        event.clientX - touchState.startX,
+        event.clientY - touchState.startY
+      );
+
+      if (!touchState.moved && distance < 8) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (!touchState.moved) {
+        touchState.moved = true;
+        clearSelection();
+
+        touchState.element.classList.add("touch-dragging");
+
+        createGhost(
+          touchState.source.word,
+          touchState.element,
           event.clientX,
           event.clientY
         );
+      }
 
-      const targetZone =
-        elementAtPoint
-          ?.closest(".drop-zone") || null;
+      moveGhost(event.clientX, event.clientY);
+
+      const element = document.elementFromPoint(
+        event.clientX,
+        event.clientY
+      );
+
+      const zone = element
+        ? element.closest(".drop-zone")
+        : null;
+
+      if (touchState.activeZone !== zone) {
+        if (touchState.activeZone) {
+          touchState.activeZone.classList.remove("drag-over");
+        }
+
+        if (zone) {
+          zone.classList.add("drag-over");
+        }
+
+        touchState.activeZone = zone;
+      }
+    }, { passive: false });
+
+    document.addEventListener("pointerup", event => {
+      if (!touchState) return;
+      if (event.pointerId !== touchState.pointerId) return;
+
+      event.preventDefault();
+      blockClickUntil = Date.now() + 500;
+
+      const element = document.elementFromPoint(
+        event.clientX,
+        event.clientY
+      );
+
+      const zone = element
+        ? element.closest(".drop-zone")
+        : null;
 
       const droppedOnBank =
-        elementAtPoint
-          ? wordBank.contains(elementAtPoint)
-          : false;
+        element && wordBank.contains(element);
 
-      if (
-        !cancelled &&
-        state.moved &&
-        state.source
-      ) {
-        if (targetZone) {
-          if (
-            state.source.type === "zone" &&
-            state.source.zone === targetZone
-          ) {
-            clearSelection();
-          } else {
-            moveOrSwap(
-              state.source,
-              targetZone
-            );
-          }
+      if (touchState.moved && touchState.source) {
+        if (zone) {
+          moveOrSwap(touchState.source, zone);
         } else if (
           droppedOnBank &&
-          state.source.type === "zone" &&
-          state.source.zone
+          touchState.source.type === "zone"
         ) {
-          returnZoneWordToBank(
-            state.source.zone
-          );
-        } else {
-          clearSelection();
+          returnZoneWordToBank(touchState.source.zone);
         }
-      } else if (
-        !cancelled &&
-        !state.moved
-      ) {
-        handleTouchTap(
-          state,
-          targetZone || state.tapZone
-        );
+      } else {
+        if (zone && selectedItem) {
+          moveOrSwap(selectedItem, zone);
+        } else if (
+          touchState.source &&
+          touchState.element
+        ) {
+          selectSource(
+            touchState.source,
+            touchState.element
+          );
+        }
       }
 
-      try {
-        state.sourceElement
-          ?.releasePointerCapture(
-            event.pointerId
-          );
-      } catch (error) {
-        /* Desteklemeyen tarayıcılar için boş. */
-      }
+      clearTouchDragging();
+      touchState = null;
+    }, { passive: false });
 
-      clearTouchDragVisuals();
-
-      pointerDragState = null;
-      draggedItem = null;
-    }
-
-    function setupTouchDragging() {
-      document.addEventListener(
-        "click",
-        event => {
-          if (
-            Date.now() <
-            suppressClickUntil
-          ) {
-            event.preventDefault();
-            event.stopImmediatePropagation();
-          }
-        },
-        true
-      );
-
-      document.addEventListener(
-        "pointerdown",
-        event => {
-          if (
-            event.pointerType === "mouse" ||
-            !event.isPrimary
-          ) {
-            return;
-          }
-
-          const zone =
-            event.target.closest(
-              ".drop-zone"
-            );
-
-          const {
-            source,
-            element
-          } = getTouchSource(
-            event.target
-          );
-
-          if (
-            !source &&
-            !(zone && selectedItem)
-          ) {
-            return;
-          }
-
-          event.preventDefault();
-
-          suppressClickUntil =
-            Date.now() + 500;
-
-          pointerDragState = {
-            pointerId:
-              event.pointerId,
-
-            startX:
-              event.clientX,
-
-            startY:
-              event.clientY,
-
-            source:
-              source,
-
-            sourceElement:
-              element,
-
-            tapZone:
-              zone || null,
-
-            moved:
-              false,
-
-            overZone:
-              null
-          };
-
-          try {
-            element?.setPointerCapture(
-              event.pointerId
-            );
-          } catch (error) {
-            /* Desteklemeyen tarayıcılar için boş. */
-          }
-        },
-        {
-          passive: false
-        }
-      );
-
-      document.addEventListener(
-        "pointermove",
-        event => {
-          const state =
-            pointerDragState;
-
-          if (
-            !state ||
-            event.pointerId !==
-              state.pointerId ||
-            !state.source
-          ) {
-            return;
-          }
-
-          const distance =
-            Math.hypot(
-              event.clientX -
-                state.startX,
-
-              event.clientY -
-                state.startY
-            );
-
-          if (
-            !state.moved &&
-            distance <
-              TOUCH_DRAG_THRESHOLD
-          ) {
-            return;
-          }
-
-          event.preventDefault();
-
-          if (!state.moved) {
-            state.moved = true;
-
-            clearSelection();
-
-            draggedItem =
-              state.source;
-
-            state.sourceElement
-              .classList.add(
-                "touch-dragging"
-              );
-
-            touchDragGhost =
-              createTouchGhost(
-                state.source.word,
-                state.sourceElement,
-                event.clientX,
-                event.clientY
-              );
-          }
-
-          moveTouchGhost(
-            event.clientX,
-            event.clientY
-          );
-
-          const elementAtPoint =
-            document.elementFromPoint(
-              event.clientX,
-              event.clientY
-            );
-
-          const nextZone =
-            elementAtPoint
-              ?.closest(
-                ".drop-zone"
-              ) || null;
-
-          if (
-            state.overZone !==
-            nextZone
-          ) {
-            state.overZone
-              ?.classList.remove(
-                "drag-over"
-              );
-
-            nextZone
-              ?.classList.add(
-                "drag-over"
-              );
-
-            state.overZone =
-              nextZone;
-          }
-        },
-        {
-          passive: false
-        }
-      );
-
-      document.addEventListener(
-        "pointerup",
-        event => {
-          finishTouchPointer(
-            event,
-            false
-          );
-        },
-        {
-          passive: false
-        }
-      );
-
-      document.addEventListener(
-        "pointercancel",
-        event => {
-          finishTouchPointer(
-            event,
-            true
-          );
-        },
-        {
-          passive: false
-        }
-      );
-    }
-
-    zones.forEach(zone => {
-      zone.draggable = false;
-
-      zone.addEventListener(
-        "dragstart",
-        event => {
-          const word =
-            zone.dataset.value;
-
-          if (!word) {
-            event.preventDefault();
-            return;
-          }
-
-          draggedItem = {
-            type: "zone",
-            word: word,
-            zone: zone
-          };
-
-          event.dataTransfer.setData(
-            "text/plain",
-            word
-          );
-
-          event.dataTransfer.effectAllowed =
-            "move";
-        }
-      );
-
-      zone.addEventListener(
-        "dragend",
-        () => {
-          draggedItem = null;
-
-          zone.classList.remove(
-            "drag-over"
-          );
-        }
-      );
-
-      zone.addEventListener(
-        "dragover",
-        event => {
-          event.preventDefault();
-
-          zone.classList.add(
-            "drag-over"
-          );
-
-          event.dataTransfer.dropEffect =
-            "move";
-        }
-      );
-
-      zone.addEventListener(
-        "dragleave",
-        () => {
-          zone.classList.remove(
-            "drag-over"
-          );
-        }
-      );
-
-      zone.addEventListener(
-        "drop",
-        event => {
-          event.preventDefault();
-
-          zone.classList.remove(
-            "drag-over"
-          );
-
-          if (draggedItem) {
-            moveOrSwap(
-              draggedItem,
-              zone
-            );
-          }
-        }
-      );
-
-      zone.addEventListener(
-        "click",
-        () => {
-          if (selectedItem) {
-            moveOrSwap(
-              selectedItem,
-              zone
-            );
-
-            return;
-          }
-
-          const word =
-            zone.dataset.value;
-
-          if (word) {
-            selectItem(
-              {
-                type: "zone",
-                word: word,
-                zone: zone
-              },
-              zone
-            );
-          }
-        }
-      );
-
-      zone.addEventListener(
-        "dblclick",
-        () => {
-          returnZoneWordToBank(
-            zone
-          );
-        }
-      );
-
-      zone.addEventListener(
-        "keydown",
-        event => {
-          if (
-            (
-              event.key === "Enter" ||
-              event.key === " "
-            ) &&
-            selectedItem
-          ) {
-            event.preventDefault();
-
-            moveOrSwap(
-              selectedItem,
-              zone
-            );
-          }
-
-          if (
-            event.key === "Backspace" ||
-            event.key === "Delete"
-          ) {
-            event.preventDefault();
-
-            returnZoneWordToBank(
-              zone
-            );
-          }
-        }
-      );
+    document.addEventListener("pointercancel", () => {
+      clearTouchDragging();
+      touchState = null;
     });
-
-    wordBank.addEventListener(
-      "dragover",
-      event => {
-        event.preventDefault();
-
-        event.dataTransfer.dropEffect =
-          "move";
-      }
-    );
-
-    wordBank.addEventListener(
-      "drop",
-      event => {
-        event.preventDefault();
-
-        if (
-          draggedItem &&
-          draggedItem.type === "zone" &&
-          draggedItem.zone
-        ) {
-          returnZoneWordToBank(
-            draggedItem.zone
-          );
-        }
-
-        draggedItem = null;
-      }
-    );
 
     function checkAnswers() {
       let correct = 0;
 
       zones.forEach(zone => {
         const isCorrect =
-          zone.dataset.value ===
-          zone.dataset.answer;
+          zone.dataset.value === zone.dataset.answer;
 
-        zone.classList.toggle(
-          "correct",
-          isCorrect
-        );
+        zone.classList.toggle("correct", isCorrect);
+        zone.classList.toggle("incorrect", !isCorrect);
 
-        zone.classList.toggle(
-          "incorrect",
-          !isCorrect
-        );
-
-        if (isCorrect) {
-          correct++;
-        }
+        if (isCorrect) correct++;
       });
 
-      const result =
-        document.getElementById(
-          "result"
-        );
+      const result = document.getElementById("result");
 
-      result.textContent =
-        `${correct}/${zones.length}`;
-
+      result.textContent = `${correct}/${zones.length}`;
       result.className =
-        correct === zones.length
-          ? "success"
-          : "partial";
+        correct === zones.length ? "success" : "partial";
 
       clearSelection();
     }
 
     function resetActivity() {
       zones.forEach(zone => {
-        zone.textContent = "";
-        zone.dataset.value = "";
-        zone.draggable = false;
-
-        zone.classList.remove(
-          "filled",
-          "correct",
-          "incorrect",
-          "selected",
-          "drag-over"
-        );
+        emptyZone(zone);
       });
 
       selectedItem = null;
       draggedItem = null;
 
-      const result =
-        document.getElementById(
-          "result"
-        );
-
+      const result = document.getElementById("result");
       result.textContent = "";
       result.className = "";
 
       fillWordBank();
     }
 
-    setupTouchDragging();
     fillWordBank();
   </script>
 </body>
